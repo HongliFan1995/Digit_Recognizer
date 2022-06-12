@@ -1,8 +1,11 @@
+from tkinter import N
 import tensorflow as tf
-from sklearn import svm
+from sklearn import svm, neighbors
 
 def CNN_model():
-
+    """
+    Define CNN model
+    """
     inp = tf.keras.Input(shape=(28,28,))
 
     x = tf.keras.layers.Reshape((28,28,1))(inp)
@@ -25,4 +28,20 @@ def CNN_model():
 
     return model
 
-def SVM_model(kernel, degree=3, C=1):
+def SVM_model(kernel, C=1., degree=3, gamma='scale'):
+    """
+    Define SVM model
+    """
+    return svm.SVC(
+        kernel=kernel,
+        C = C,
+        degree = degree,
+        gamma = gamma,
+        decision_function_shape='ovo',
+    )
+
+def KNN_model(n_neighbors=11):
+    """
+    Define KNN model
+    """
+    return neighbors.KNeighborsClassifier(n_neighbors=n_neighbors)
