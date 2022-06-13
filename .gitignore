@@ -2,3 +2,4 @@ test.py
 data/**
 results/**
 models/**
+**__pycache__**
